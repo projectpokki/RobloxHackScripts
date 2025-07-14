@@ -16,7 +16,7 @@ end
 game.UserInputService.InputBegan:Connect(function(input) 
 	if input.KeyCode == Enum.KeyCode.L then
 		local mousePart = game.Players.LocalPlayer:GetMouse().Target
-		if mousePart and not mousePart.Parent:FindFirstChild("Humanoid") then
+		if mousePart and not (mousePart.Parent:FindFirstChild("Humanoid") or mousePart.Parent.Parent:FindFirstChild("Humanoid")) then
 			deletePart(mousePart)
 		end
 	elseif input.KeyCode == Enum.KeyCode.K then
@@ -36,7 +36,7 @@ game.UserInputService.InputBegan:Connect(function(input)
 				continue
 			end
 			
-			if (obj:IsA("BasePart") or obj:IsA("Part") or obj:IsA("MeshPart") or obj:IsA("UnionOperation")) and not obj.Parent:FindFirstChild("Humanoid") then
+			if (obj:IsA("BasePart") or obj:IsA("Part") or obj:IsA("MeshPart") or obj:IsA("UnionOperation")) and not (obj.Parent:FindFirstChild("Humanoid") or obj.Parent.Parent:FindFirstChild("Humanoid")) then
 				if obj.Position.Y > game.Players.LocalPlayer.Character.PrimaryPart.Position.Y - 2 then
 					deletePart(obj)
 				end
